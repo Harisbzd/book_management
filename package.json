@@ -1,0 +1,81 @@
+{
+ 
+
+  "devDependencies": {
+ 
+
+   
+
+  "autoprefixer": "^10.4.20",
+ 
+
+   
+
+  "postcss": "^8.4.47",
+ 
+
+   
+
+  "prettier": "3.3.3",
+ 
+
+   
+
+  "tailwindcss": "^3.4.14",
+ 
+
+   
+
+  "vite": "^5.4.9"
+ 
+
+  },
+ 
+
+  "headwind.classRegex": {
+ 
+
+   
+
+  "html": "\\bclass\\s*=\\s*[\\\"\\'](https://github.com/heybourn/headwind/blob/master/[_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\']",
+ 
+
+   
+
+  "javascriptreact": "(?:\\bclassName\\s*=\\s*[\\\"\\'](https://github.com/heybourn/headwind/blob/master/[_a-zA-Z0-9\\s\\-\\:\\/]+)[\\\"\\'])|(?:\\btw\\s*`([_a-zA-Z0-9\\s\\-\\:\\/]*)`)"
+ 
+
+  },
+ 
+
+  "name": "tailwind2",
+ 
+
+  "version": "1.0.0",
+ 
+
+  "main": "index.js",
+ 
+
+  "scripts": {
+ 
+
+   
+
+  "start": "vite"
+ 
+
+  },
+ 
+
+  "keywords": [],
+ 
+
+  "author": "",
+ 
+
+  "license": "ISC",
+ 
+
+  "description": ""
+}
