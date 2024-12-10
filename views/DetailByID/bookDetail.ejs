@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentDate = new Date();
+        const options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        document.getElementById("current-date").textContent =
+          currentDate.toLocaleDateString("en-US", options);
+      });
+
+      // JavaScript to show the confirmation form
+      function showDeleteConfirmation() {
+        document.getElementById("delete-confirmation").style.display = "block";
+      }
+
+      // JavaScript to hide the confirmation form
+      function hideDeleteConfirmation() {
+        document.getElementById("delete-confirmation").style.display = "none";
+      }
+    </script>
+    <link href="/output.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Library Management System</title>
+  </head>
+
+  <body class="font-sans bg-gray-200">
+    <div class="container px-4 mx-auto">
+      <header class="py-6 bg-[#1e3039] shadow-lg rounded-lg text-white mb-2">
+        <h1 class="mb-2 text-5xl font-bold text-center">
+          Library Management System
+        </h1>
+        <p class="text-lg italic text-center">
+          Your gateway to knowledge and resources
+        </p>
+      </header>
+
+      <div class="flex flex-col gap-8 md:flex-row">
+        <nav class="md:w-1/4">
+          <div
+            class="p-6 transition-transform duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:scale-110"
+          >
+            <h2
+              class="text-2xl font-bold text-[#1e3039] mb-4 border-b-2 border-[#1e3039] pb-2"
+            >
+              Navigation
+            </h2>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/books"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Books</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/author"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Authors</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/genre"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Genres</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/bookinstance"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Book Instances</a
+                >
+              </li>
+            </ul>
+
+            <h2
+              class="mt-6 mb-4 text-2xl font-bold text-[#1e3039] border-b-2 border-[#1e3039] pb-2"
+            >
+              Management
+            </h2>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/catalog/author/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Author</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/genre/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Genre</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/book/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Book</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/bookinstance/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Book Instance</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="md:w-3/4">
+          <section
+            class="container p-8 text-white bg-gray-500 rounded-lg shadow-md"
+          >
+            <p class="text-3xl font-semibold text-center">
+              Book: <span class="italic"><%= Specific_book.title %></span>
+            </p>
+          </section>
+
+          <section
+            class="p-6 transition-transform duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:bg-teal-700 hover:scale-110 hover:text-white"
+          >
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div class="p-6 text-center bg-white rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-[#1e3039] mb-2">ISBN</h3>
+                <p class="text-black"><%= Specific_book.isbn %></p>
+              </div>
+              <div class="p-6 text-center bg-white rounded-lg shadow-lg">
+                <h3 class="text-xl font-bold text-[#1e3039] mb-2">
+                  Author Name
+                </h3>
+                <p class="text-black"><%= Specific_book.author.name %></p>
+              </div>
+              <div
+                class="flex justify-center p-6 text-center bg-white rounded-lg shadow-lg"
+              >
+                <div class="">
+                  <h3 class="mb-2 text-xl font-bold text-black">Genre</h3>
+                  <% if (Specific_book.genre.length > 0) { %>
+                  <ul>
+                    <% Specific_book.genre.forEach(genre => { %>
+                    <li class="text-black"><%= genre.name %></li>
+                    <% }); %>
+                  </ul>
+                  <% } else { %>
+                  <p class="text-black">No Genre Available</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 mt-4 bg-white rounded-lg shadow-md book-details">
+              <h3
+                class="mb-4 text-2xl font-semibold text-[#1e3039] justify-center flex mt-4"
+              >
+                Summary
+              </h3>
+              <p class="text-lg leading-relaxed text-black">
+                <%= Specific_book.summary %>
+              </p>
+            </div>
+          </section>
+          <div
+            id="delete-confirmation"
+            class="p-6 mt-6 bg-white rounded-lg shadow-lg"
+            style="display: none"
+          >
+            <h3 class="mb-4 text-2xl font-semibold text-center text-gray-800">
+              Are you sure you want to delete this book?
+            </h3>
+
+            <!-- Form to handle the POST request -->
+            <form
+              id="delete-form"
+              action="/catalog/book/<%= Specific_book._id %>/delete"
+              method="POST"
+              class="flex justify-center gap-4"
+            >
+              <!-- Hidden input to pass the book's ID -->
+              <input
+                type="hidden"
+                name="bookId"
+                value="<%= Specific_book._id %>"
+              />
+              <div class="flex justify-center gap-4">
+                <button
+                  type="button"
+                  onclick="hideDeleteConfirmation()"
+                  class="px-6 py-3 text-white transition duration-200 ease-in-out bg-gray-500 rounded-lg shadow-md hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-3 text-white transition duration-200 ease-in-out bg-red-600 rounded-lg shadow-md hover:bg-red-700"
+                >
+                  Confirm
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="mt-6 text-center">
+            <button
+              onclick="showDeleteConfirmation()"
+              class="px-6 py-3 text-white transition duration-300 ease-in-out bg-red-600 rounded-lg shadow-md hover:bg-red-700"
+            >
+              Delete Book
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

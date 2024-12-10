@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/output.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <title>All Book List</title>
+  </head>
+
+  <body class="font-sans bg-gray-100">
+    <div class="container px-4 mx-auto">
+      <header class="py-6 bg-[#1e3039] shadow-lg rounded-lg text-white mb-2">
+        <h1 class="mb-2 text-5xl font-bold text-center">
+          Library Management System
+        </h1>
+        <p class="text-lg italic text-center">
+          Your gateway to knowledge and resources
+        </p>
+      </header>
+
+      <div class="flex flex-col gap-8 md:flex-row">
+        <nav class="md:w-1/4">
+          <div
+            class="p-6 transition-transform duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:scale-110"
+          >
+            <h2
+              class="text-2xl font-bold text-[#1e3039] mb-4 border-b-2 border-[#1e3039] pb-2"
+            >
+              Navigation
+            </h2>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/books"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Books</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/author"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Authors</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/genre"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Genres</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/bookinstance"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >All Book Instances</a
+                >
+              </li>
+            </ul>
+
+            <h2
+              class="mt-6 mb-4 text-2xl font-bold text-[#1e3039] border-b-2 border-[#1e3039] pb-2"
+            >
+              Management
+            </h2>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/catalog/author/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Author</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/genre/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Genre</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/book/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Book</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/catalog/bookinstance/create"
+                  class="block py-3 px-4 rounded-lg text-[#1e3039] hover:bg-[#1e3039] hover:text-white transition duration-200 ease-in-out"
+                  >Create New Book Instance</a
+                >
+              </li>
+            </ul>
+
+           
+        </nav>
+
+        <main class="md:w-3/4">
+          <section
+            class="container p-8 text-white bg-gray-500 rounded-lg shadow-md"
+          >
+            <div class="flex items-center justify-between">
+              <h2 class="text-3xl font-bold">All Books</h2>
+              <input
+                type="text"
+                placeholder="Search Books..."
+                class="px-4 py-2 text-black rounded-md outline-none focus:ring-2 focus:ring-gray-300"
+              />
+            </div>
+            <p class="mt-2 text-lg">
+              List of all available books in the library.
+            </p>
+          </section>
+
+          <section
+            class="p-6 transition-transform duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:bg-teal-700 hover:scale-110 hover:text-white"
+          >
+            <div
+              class="grid grid-cols-5 gap-4 pb-4 mb-4 text-2xl font-semibold"
+            >
+              <div>Number</div>
+              <div>Book Name</div>
+              <div>Author</div>
+              <div>Genre</div>
+              <div>Details</div>
+            </div>
+
+            <div class="overflow-y-auto max-h-[400px]">
+              <% if (book_list && book_list.length > 0) { %>
+              <ol class="space-y-4">
+                <% book_list.forEach(function(book, index) { %>
+                <li class="grid grid-cols-5 gap-4 pb-2 border-b">
+                  <div><%= index + 1 %></div>
+                  <div><%= book.title %></div>
+                  <div><%= book.author.name %></div>
+                  <div>
+                    <%= book.genre && book.genre.length > 0 ? book.genre.map(g=>
+                    g.name).join(', ') : '---' %>
+                  </div>
+                  <div>
+                    <a class="ml-4" href="/catalog/book/<%= book._id  %>"
+                      >View</a
+                    >
+                  </div>
+                </li>
+                <% }); %>
+              </ol>
+              <% } else { %>
+              <p class="text-center">There are no authors.</p>
+              <% } %>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
